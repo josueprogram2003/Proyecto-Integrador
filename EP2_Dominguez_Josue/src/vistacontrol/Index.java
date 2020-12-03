@@ -48,9 +48,9 @@ public class Index {
         nombre = Leer.cadena();
         System.out.print("Estado: ");
         estado = Leer.cadena();
-        Editorial autor = new Editorial(nombre, estado);
+        Editorial editorial = new Editorial(nombre, estado);
         EditorialDAO autorDAO = new EditorialDAO();
-        autorDAO.agregarEditorial(autor);
+        autorDAO.agregarEditorial(editorial);
     }
     public static void EliminarEditorial(){
      listarEditorial();
@@ -65,6 +65,7 @@ public class Index {
         }   
     }
     public static void EditarEditorial(){
+        listarEditorial();
            int ideditorial;
         String  nombre;
          String estado;
@@ -89,9 +90,10 @@ public class Index {
         }               
     }
     
+    
      public static void editarautor(){
         listar_autor();
-        buscarlibro();
+        buscarautor();
         String nombre;
         String apellidos;
         String estado;
@@ -186,6 +188,7 @@ public class Index {
     }
     
     public static void editarlibro(){
+        listar_libros();
         int idlibro,idautor,ideditorial,idpais;
         String  nombre,codigo,  ISBN,  fecha_publicacion;
         String estado;
@@ -221,6 +224,19 @@ public class Index {
             }
         }               
     }
+    
+    public static void buscarautor(){
+      int idautor;
+       System.out.println("Ingrese el ID: ");
+       idautor= Leer.entero();
+       AutorDAO autor = new AutorDAO();
+       List<Autor> lista = autor.buscarAutor(idautor);
+        for (Autor autor1 : lista) {
+            System.out.println(autor1.getIdautor() + "\t" + autor1.getNombre() + "\t" + autor1.getApellidos()+
+                    "\t"+ autor1.getEstado());
+        }
+    }
+    
     public static void buscarlibro(){
         int idlibro;
         System.out.println("Ingrese el ID: ");
@@ -295,6 +311,7 @@ public class Index {
      }
       
        public static void Editar_pais(){
+           listar_pais();
         Buscar_pais();
         int idpais;
         String  nombre;

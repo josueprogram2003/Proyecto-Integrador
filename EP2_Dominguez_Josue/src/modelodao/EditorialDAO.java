@@ -77,8 +77,8 @@ public class EditorialDAO implements CRUD_EDITORIAL{
     String consulta = " insert into "+ 
                 " editorial (nombre, estado)"+
               " values('"+editorial.getNombre() +"',"
-                + " '"+editorial.getEstado()+ "',"
-                + ")";
+                + " '"+editorial.getEstado()+ "'"
+                + "); ";
                 try {
             con = cn.getConnection();
             pst = con.prepareStatement(consulta);
